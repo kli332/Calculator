@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,44 +31,66 @@ class MainActivity : AppCompatActivity() {
             val userInput1 = editText1.text.toString()
             val userInput2 = editText2.text.toString()
 
-            val result = Integer.parseInt(userInput1) + Integer.parseInt(userInput2)
+            if(userInput1.toIntOrNull() == null || userInput2.toIntOrNull() == null) {
+                Toast.makeText(this, R.string.type_error, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val result = Integer.parseInt(userInput1) + Integer.parseInt(userInput2)
 
-            val intent = Intent(this, CalculatorActivity::class.java)
-            intent.putExtra("EXTRA_MESSAGE", result.toString())
-            startActivity(intent)
+                val intent = Intent(this, CalculatorActivity::class.java)
+                intent.putExtra("EXTRA_MESSAGE", result.toString())
+                startActivity(intent)
+            }
         }
 
         subtraction.setOnClickListener {
             val userInput1 = editText1.text.toString()
             val userInput2 = editText2.text.toString()
 
-            val result = Integer.parseInt(userInput1) - Integer.parseInt(userInput2)
+            if(userInput1.toIntOrNull() == null || userInput2.toIntOrNull() == null) {
+                Toast.makeText(this, R.string.type_error, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val result = Integer.parseInt(userInput1) - Integer.parseInt(userInput2)
 
-            val intent = Intent(this, CalculatorActivity::class.java)
-            intent.putExtra("EXTRA_MESSAGE", result.toString())
-            startActivity(intent)
+                val intent = Intent(this, CalculatorActivity::class.java)
+                intent.putExtra("EXTRA_MESSAGE", result.toString())
+                startActivity(intent)
+            }
         }
 
         multiplication.setOnClickListener {
             val userInput1 = editText1.text.toString()
             val userInput2 = editText2.text.toString()
 
-            val result = Integer.parseInt(userInput1) * Integer.parseInt(userInput2)
+            if(userInput1.toIntOrNull() == null || userInput2.toIntOrNull() == null) {
+                Toast.makeText(this, R.string.type_error, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val result = Integer.parseInt(userInput1) * Integer.parseInt(userInput2)
 
-            val intent = Intent(this, CalculatorActivity::class.java)
-            intent.putExtra("EXTRA_MESSAGE", result.toString())
-            startActivity(intent)
+                val intent = Intent(this, CalculatorActivity::class.java)
+                intent.putExtra("EXTRA_MESSAGE", result.toString())
+                startActivity(intent)
+            }
         }
 
         division.setOnClickListener {
             val userInput1 = editText1.text.toString()
             val userInput2 = editText2.text.toString()
 
-            val result = Integer.parseInt(userInput1) / Integer.parseInt(userInput2)
+            if(userInput2.equals("0")) {
+                Toast.makeText(this, R.string.div_error, Toast.LENGTH_SHORT).show()
+            } else if(userInput1.toIntOrNull() == null || userInput2.toIntOrNull() == null) {
+                Toast.makeText(this, R.string.type_error, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val result = userInput1.toFloat() / Integer.parseInt(userInput2)
 
-            val intent = Intent(this, CalculatorActivity::class.java)
-            intent.putExtra("EXTRA_MESSAGE", result.toString())
-            startActivity(intent)
+                val intent = Intent(this, CalculatorActivity::class.java)
+                intent.putExtra("EXTRA_MESSAGE", result.toString())
+                startActivity(intent)
+            }
         }
     }
 }
